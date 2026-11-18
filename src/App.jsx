@@ -43,7 +43,6 @@ function App() {
     try {
       const nextUsers = await fetchUsers()
       setUsers(nextUsers)
-      setNotice(null)
     } catch {
       setNotice({ type: 'error', text: 'Could not load users. Check that the API and database are running.' })
     } finally {
@@ -53,6 +52,7 @@ function App() {
 
   function refreshUsers() {
     setIsLoading(true)
+    setNotice(null)
     loadUsers()
   }
 

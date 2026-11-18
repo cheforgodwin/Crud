@@ -52,4 +52,14 @@ Vite forwards `/api` requests to Express on port 3000. If you change `PORT` in `
 Create and update requests use JSON with `fullName`, `email`, and `phone`. The API validates required fields and email format, normalizes email addresses to lowercase, and returns `409` when an email is already in use. The unique email constraint is enforced by PostgreSQL as well as the API.
 
 `.env` is ignored by Git. Do not commit your database credentials.
+
+## Deploy to Vercel
+
+The root `index.js` exports the Express application for Vercel, while `server/index.js` starts it for local development. The Vercel build command also copies the Vite build into `public` so Vercel can serve the frontend assets alongside the API.
+
+1. Push this repository to GitHub and import it from the Vercel dashboard.
+2. In the Vercel project settings, add `DATABASE_URL` for Production, Preview, and Development. Use the same PostgreSQL connection string as the local `.env`; do not add `VITE_` to this variable.
+3. Deploy. Vercel uses the `vercel.json` build command, and its Express integration exposes the API as a function.
+
+Vercel environment variables are separate from `.env` and require a redeploy after changes.
 # Crud

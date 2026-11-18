@@ -11,6 +11,8 @@ node_modules
 dist
 dist-ssr
 *.local
+/public/index.html
+/public/assets/
 .env
 .env.*
 !.env.example
